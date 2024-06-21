@@ -1,0 +1,7 @@
+:host ::ng-deep #viewImage {
+  max-width: 33rem;
+}
+
+:host ::ng-deep #viewImage_gallery {
+  padding: 1rem 2rem;
+}

@@ -1,0 +1,105 @@
+@if(showViewImageModal){
+<app-view-image-modal [displayViewImage]="displayViewImage.bind(this)">
+  <app-view-image
+    [product]="product"
+    [currentImage]="currentImage"
+    [displayImage]="displayImage"
+  ></app-view-image
+></app-view-image-modal>
+}
+
+<main class="flex flex-col md:flex-row md:gap-10 lg:gap-28 md:justify-center">
+  <div class="overflow-hidden relative md:hidden">
+    <div
+      class="flex transition-transform ease-out duration-500"
+      [ngStyle]="{ transform: 'translateX(' + -imagePosition * 100 + '%)' }"
+    >
+      @for(imagePath of product.images; track imagePath; let index = $index) {
+      <img [src]="imagePath" alt="" />
+      }
+    </div>
+    <div class="absolute inset-0 flex items-center justify-between p-4">
+      <button
+        (click)="prevImage()"
+        class="w-8 h-8 rounded-full flex items-center justify-center bg-white"
+      >
+        <img class="w-2" src="./assets/images/icon-previous.svg" alt="" />
+      </button>
+      <button
+        (click)="nextImage()"
+        class="w-8 h-8 rounded-full flex items-center justify-center bg-white"
+      >
+        <img class="w-2" src="./assets/images/icon-next.svg" alt="" />
+      </button>
+    </div>
+  </div>
+
+  <app-view-image
+    [product]="product"
+    [displayViewImage]="displayViewImage.bind(this)"
+    [currentImage]="currentImage"
+    [displayImage]="displayImage"
+  ></app-view-image>
+
+  <div class="p-6 py-8 flex flex-col gap-6 w-full md:max-w-[32rem]">
+    <div class="flex flex-col">
+      <div class="mb-4">
+        <p
+          class="mb-2 md:mb-4 uppercase text-[0.7rem] md:text-base font-bold tracking-wider md:tracking-widest text-dark-grayish-blue"
+        >
+          {{ product.company }}
+        </p>
+        <h1 class="text-3xl font-bold mb-2 md:mb-10 md:text-5xl">
+          {{ product.name }}
+        </h1>
+        <p class="text-dark-grayish-blue font-medium md:text-lg">
+          {{ product.description }}
+        </p>
+      </div>
+      <div
+        class="flex items-center justify-between lg:flex-col lg:items-start lg:gap-3"
+      >
+        <div class="text-2xl font-bold md:text-3xl">
+          @if(product.discount && product.discount > 0){ ${{
+            (product.price * (product.discount / 100)).toFixed(2)
+          }}
+          <span class="ms-2 text-base py-1 px-2 rounded-md bg-black text-white"
+            >{{ product.discount }}%</span
+          >
+          } @else { ${{ product.price.toFixed(2) }}
+          }
+        </div>
+        @if(product.discount && product.discount > 0){
+        <div class="line-through font-bold text-dark-grayish-blue md:text-lg">
+          ${{ product.price.toFixed(2) }}
+        </div>
+        }
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-4 lg:flex-row">
+      <div
+        class="w-full p-4 px-6 flex justify-between bg-light-grayish-blue rounded-md lg:max-w-40"
+      >
+        <button (click)="removeProduct()">
+          <img src="./assets/images/icon-minus.svg" alt="" />
+        </button>
+        <p class="font-bold">{{ quantity }}</p>
+        <button (click)="addProduct()">
+          <img src="./assets/images/icon-plus.svg" alt="" />
+        </button>
+      </div>
+      <button
+        (click)="addToCart()"
+        class="w-full bg-orange-500 flex items-center justify-center p-4 gap-4 rounded-md"
+      >
+        <img
+          class="brightness-0 h-4"
+          src="./assets/images/icon-cart.svg"
+          alt=""
+        />
+        <span class="font-bold">Add to cart</span>
+      </button>
+    </div>
+  </div>
+</main>

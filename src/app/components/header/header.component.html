@@ -1,0 +1,87 @@
+<app-cart-modal
+  *ngIf="isOpenCart"
+  [cartProducts]="cartProducts"
+></app-cart-modal>
+<div
+  class="w-screen h-screen bg-black/75 absolute top-0 left-0 z-20 md:hidden"
+  [ngClass]="{ hidden: !isOpenDrawer }"
+></div>
+<header class="flex items-center justify-between py-4 px-6 md:p-0">
+  <div class="flex gap-12">
+    <div class="flex items-center gap-4">
+      <div
+        (click)="openDrawer()"
+        class="cursor-pointer flex flex-col gap-1 cursor md:hidden"
+      >
+        <div class="w-5 h-1 bg-gray-600"></div>
+        <div class="w-5 h-1 bg-gray-600 -mt-[0.05rem]"></div>
+        <div class="w-5 h-1 bg-gray-600 -mt-[0.05rem]"></div>
+      </div>
+      <img
+        class="mb-1 md:mb-0 md:w-48"
+        src="./assets/images/logo.svg"
+        alt="logo"
+      />
+    </div>
+    <div
+      class="transition-all absolute md:static top-0 md:top-auto md:left-auto p-7 md:p-0 h-full md:h-auto w-4/6 md:w-full z-20 md:z-auto bg-white"
+      [ngClass]="{
+        '-left-full': !isOpenDrawer,
+        'left-0': isOpenDrawer
+      }"
+    >
+      <div
+        (click)="closeDrawer()"
+        class="flex flex-col gap-1 h-8 cursor md:hidden cursor-pointer"
+      >
+        <div
+          class="w-4 h-[0.2rem] bg-dark-grayish-blue rotate-45 absolute"
+        ></div>
+        <div
+          class="w-4 h-[0.2rem] bg-dark-grayish-blue -rotate-45 absolute"
+        ></div>
+      </div>
+      <ul
+        class="flex flex-col md:flex-row gap-5 md:gap-8 text-lg md:text-base font-bold md:font-medium md:text-dark-grayish-blue mt-6 md:mt-9 md:[&>li]:pb-9 [&>li]:transition-all"
+      >
+        <li class="md:hover:shadow-[0_4px_0_-1px_rgb(249,115,22)]">
+          <a href="#">Collections</a>
+        </li>
+        <li class="md:hover:shadow-[0_4px_0_-1px_rgb(249,115,22)]">
+          <a href="#">Men</a>
+        </li>
+        <li class="md:hover:shadow-[0_4px_0_-1px_rgb(249,115,22)]">
+          <a href="#">Women</a>
+        </li>
+        <li class="md:hover:shadow-[0_4px_0_-1px_rgb(249,115,22)]">
+          <a href="#">About</a>
+        </li>
+        <li class="md:hover:shadow-[0_4px_0_-1px_rgb(249,115,22)]">
+          <a href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="flex items-center gap-5 md:gap-10">
+    <button class="relative" (click)="toggleOpenCart()">
+      @if(quantity){
+      <div
+        class="absolute -top-2 -right-3 w-6 h-4 rounded-3xl bg-orange-500 text-white text-xs font-medium z-10"
+      >
+        {{ quantity }}
+      </div>
+      }
+      <img
+        class="md:w-5 hover:invert-0 hover:brightness-0"
+        src="./assets/images/icon-cart.svg"
+        alt="cart"
+      />
+    </button>
+    <img
+      class="w-7 h-7 md:w-12 md:h-12 cursor-pointer hover:shadow-[0_0_0_2px_rgb(249,115,22)] rounded-full"
+      src="./assets/images/image-avatar.png"
+      alt="avatar"
+    />
+  </div>
+</header>
+<div class="hidden md:block border-b mt-[0.2rem] mb-20"></div>

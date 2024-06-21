@@ -1,0 +1,20 @@
+<div
+  (click)="displayViewImage(false)"
+  class="w-screen h-screen bg-black/75 fixed top-0 left-0 z-20"
+>
+  <div class="h-full flex items-center justify-center">
+    <div class="relative">
+      <button
+        (click)="displayViewImage(false)"
+        class="absolute right-0 -top-10"
+      >
+        <img
+          class="w-5 brightness-0 invert"
+          src="./assets/images/icon-close.svg"
+          alt=""
+        />
+      </button>
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

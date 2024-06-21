@@ -1,0 +1,39 @@
+<div id="viewImage" class="hidden md:block max-w-[30rem] relative">
+  <img
+    (click)="openImageViewer($event)"
+    class="rounded-xl"
+    [src]="currentImage"
+    alt=""
+    [ngClass]="{
+      'cursor-pointer': displayViewImage
+    }"
+  />
+
+  @if(!displayViewImage) {<button
+    (click)="prevImage($event)"
+    class="absolute top-[33%] -left-5 w-11 h-11 rounded-full flex items-center justify-center bg-white"
+  >
+    <img class="w-3" src="./assets/images/icon-previous.svg" alt="" /></button
+  >} @if(!displayViewImage) {<button
+    (click)="nextImage($event)"
+    class="absolute top-[33%] -right-5 w-11 h-11 rounded-full flex items-center justify-center bg-white"
+  >
+    <img class="w-3" src="./assets/images/icon-next.svg" alt="" /></button
+  >}
+  <div id="viewImage_gallery" class="flex justify-between my-6">
+    @for(imagePath of product.images; track imagePath; let index = $index) {
+    <div
+      (click)="selectImageToView($event, index)"
+      class="cursor-pointer rounded-md overflow-hidden relative transition-all"
+      [ngClass]="{
+        'shadow-[0_0_0_2px_rgb(249,115,22)]': imagePath === currentImage
+      }"
+    >
+      <img class="w-16 lg:w-20 xl:w-24" [src]="imagePath" alt="" />
+      @if(imagePath === currentImage){
+      <div class="absolute top-0 left-0 w-full h-full bg-white/75"></div>
+      }
+    </div>
+    }
+  </div>
+</div>
