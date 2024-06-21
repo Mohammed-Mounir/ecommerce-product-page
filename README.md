@@ -25,6 +25,7 @@ Desktop Design
 Mobile Design
 
 ![mobile1](https://github.com/Mohammed-Mounir/ecommerce-product-page/assets/10738474/128af1b3-0f0d-41fe-85ef-4892175aa217)
+
 ![mobile2](https://github.com/Mohammed-Mounir/ecommerce-product-page/assets/10738474/cc2c4ec2-66a8-4c4a-9acc-16b120ec9b02)
 
 ### Links
